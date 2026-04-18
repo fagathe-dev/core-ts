@@ -9,7 +9,7 @@ export class FileSizeFormatter {
    */
   static format(
     filesize: number | null | undefined,
-    precision: number = 2
+    precision: number = 2,
   ): string {
     if (filesize === 0 || filesize === null || filesize === undefined) {
       return '0 octets';
@@ -48,7 +48,7 @@ export class FileSizeFormatter {
 
     if (isNaN(value))
       throw new Error(
-        `FileSizeFormatter: Format de taille invalide "${sizeString}"`
+        `FileSizeFormatter: Format de taille invalide "${sizeString}"`,
       );
 
     switch (unit) {

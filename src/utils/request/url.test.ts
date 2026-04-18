@@ -10,7 +10,11 @@ describe('addQueryParams', () => {
   });
 
   it('ajoute des paramètres à une URL absolue', () => {
-    const result = addQueryParams('http://example.com/posts', { page: 1 }, BASE);
+    const result = addQueryParams(
+      'http://example.com/posts',
+      { page: 1 },
+      BASE,
+    );
     expect(result).toContain('page=1');
     expect(result).toContain('http://example.com');
   });
@@ -26,7 +30,7 @@ describe('addQueryParams', () => {
     expect(result).toContain('limit=10');
   });
 
-  it('retourne l\'URL non modifiée pour une URL invalide', () => {
+  it("retourne l'URL non modifiée pour une URL invalide", () => {
     const result = addQueryParams('', { page: 1 }, BASE);
     // empty string will parse as BASE itself
     expect(typeof result).toBe('string');
@@ -40,23 +44,31 @@ describe('removeQueryParams', () => {
   });
 
   it('supprime plusieurs paramètres', () => {
-    const result = removeQueryParams('/posts?page=1&limit=10&sort=asc', ['page', 'sort'], BASE);
+    const result = removeQueryParams(
+      '/posts?page=1&limit=10&sort=asc',
+      ['page', 'sort'],
+      BASE,
+    );
     expect(result).toBe('/posts?limit=10');
   });
 
-  it('ne plante pas si le paramètre n\'existe pas', () => {
+  it("ne plante pas si le paramètre n'existe pas", () => {
     const result = removeQueryParams('/posts?page=1', ['nonexistent'], BASE);
     expect(result).toBe('/posts?page=1');
   });
 
   it('fonctionne sur une URL absolue', () => {
-    const result = removeQueryParams('http://example.com/posts?page=1', ['page'], BASE);
+    const result = removeQueryParams(
+      'http://example.com/posts?page=1',
+      ['page'],
+      BASE,
+    );
     expect(result).toBe('http://example.com/posts');
   });
 });
 
 describe('getQueryParams', () => {
-  it('extrait tous les paramètres d\'une URL', () => {
+  it("extrait tous les paramètres d'une URL", () => {
     const result = getQueryParams('/posts?page=1&limit=10', BASE);
     expect(result).toEqual({ page: '1', limit: '10' });
   });

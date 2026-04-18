@@ -9,27 +9,39 @@ describe('DateCalculator', () => {
     });
 
     it('soustrait des jours', () => {
-      const result = DateCalculator.modify('2024-01-15T00:00:00Z', { days: -5 });
+      const result = DateCalculator.modify('2024-01-15T00:00:00Z', {
+        days: -5,
+      });
       expect(result.getUTCDate()).toBe(10);
     });
 
     it('ajoute des mois', () => {
-      const result = DateCalculator.modify('2024-01-15T00:00:00Z', { months: 3 });
-      expect(result.getMonth()).toBe(new Date('2024-04-15T00:00:00Z').getMonth());
+      const result = DateCalculator.modify('2024-01-15T00:00:00Z', {
+        months: 3,
+      });
+      expect(result.getMonth()).toBe(
+        new Date('2024-04-15T00:00:00Z').getMonth(),
+      );
     });
 
     it('ajoute des années', () => {
-      const result = DateCalculator.modify('2024-01-15T00:00:00Z', { years: 2 });
+      const result = DateCalculator.modify('2024-01-15T00:00:00Z', {
+        years: 2,
+      });
       expect(result.getFullYear()).toBe(2026);
     });
 
     it('ajoute des heures', () => {
-      const result = DateCalculator.modify('2024-01-15T10:00:00Z', { hours: 5 });
+      const result = DateCalculator.modify('2024-01-15T10:00:00Z', {
+        hours: 5,
+      });
       expect(result.getUTCHours()).toBe(15);
     });
 
     it('ajoute des minutes', () => {
-      const result = DateCalculator.modify('2024-01-15T10:00:00Z', { minutes: 30 });
+      const result = DateCalculator.modify('2024-01-15T10:00:00Z', {
+        minutes: 30,
+      });
       expect(result.getUTCMinutes()).toBe(30);
     });
 
@@ -85,7 +97,7 @@ describe('DateCalculator', () => {
       expect(result.months).toBe(0);
     });
 
-    it('retourne une différence positive quelle que soit l\'ordre', () => {
+    it("retourne une différence positive quelle que soit l'ordre", () => {
       const result1 = DateCalculator.diff('2024-01-01', '2024-01-10');
       const result2 = DateCalculator.diff('2024-01-10', '2024-01-01');
       expect(result1.days).toBe(result2.days);
@@ -103,7 +115,10 @@ describe('DateCalculator', () => {
     });
 
     it('calcule la différence en années', () => {
-      const result = DateCalculator.diff('2020-01-01T00:00:00Z', '2023-01-01T00:00:00Z');
+      const result = DateCalculator.diff(
+        '2020-01-01T00:00:00Z',
+        '2023-01-01T00:00:00Z',
+      );
       expect(result.years).toBe(3); // 3 * 365 = 1095 jours, / 365 = 3 mais floor-based
     });
 

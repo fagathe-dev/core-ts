@@ -5,10 +5,10 @@
  * @returns {(string[] | null)}
  */
 export const getCheckboxesValue = (
-  checkboxes: NodeListOf<HTMLInputElement>
+  checkboxes: NodeListOf<HTMLInputElement>,
 ): string[] | null => {
   const values: string[] = [];
-  checkboxes.forEach(checkbox => {
+  checkboxes.forEach((checkbox) => {
     if (checkbox.checked) {
       values.push(checkbox.value);
     }
@@ -23,7 +23,7 @@ export const getCheckboxesValue = (
  * @returns {(string | null)}
  */
 export const getRadioValue = (
-  radioButtons: NodeListOf<HTMLInputElement>
+  radioButtons: NodeListOf<HTMLInputElement>,
 ): string | null => {
   for (const radio of radioButtons) {
     if (radio.checked) {
@@ -61,10 +61,10 @@ export const getInputValue = (input: HTMLInputElement): string | null => {
  * @returns {(string | string[] | null)}
  */
 export const getSelectValue = (
-  select: HTMLSelectElement
+  select: HTMLSelectElement,
 ): string | string[] | null => {
   const selectedOptions = Array.from(select.options).filter(
-    (option: HTMLOptionElement) => option.selected
+    (option: HTMLOptionElement) => option.selected,
   );
 
   if (selectedOptions.length === 0) {
@@ -79,7 +79,7 @@ export const getSelectValue = (
 };
 
 export const getTextareaValue = (
-  textarea: HTMLTextAreaElement
+  textarea: HTMLTextAreaElement,
 ): string | null => {
   return textarea.value !== '' ? textarea.value : null;
 };

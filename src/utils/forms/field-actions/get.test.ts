@@ -16,7 +16,9 @@ describe('getCheckboxesValue', () => {
       <input type="checkbox" name="cb" value="c" checked>
     `;
     document.body.appendChild(container);
-    const checkboxes = container.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
+    const checkboxes = container.querySelectorAll<HTMLInputElement>(
+      'input[type="checkbox"]',
+    );
     const result = getCheckboxesValue(checkboxes);
     expect(result).toEqual(['a', 'c']);
     container.remove();
@@ -29,7 +31,9 @@ describe('getCheckboxesValue', () => {
       <input type="checkbox" name="cb" value="b">
     `;
     document.body.appendChild(container);
-    const checkboxes = container.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
+    const checkboxes = container.querySelectorAll<HTMLInputElement>(
+      'input[type="checkbox"]',
+    );
     expect(getCheckboxesValue(checkboxes)).toBeNull();
     container.remove();
   });
@@ -43,7 +47,9 @@ describe('getRadioValue', () => {
       <input type="radio" name="r" value="y" checked>
     `;
     document.body.appendChild(container);
-    const radios = container.querySelectorAll<HTMLInputElement>('input[type="radio"]');
+    const radios = container.querySelectorAll<HTMLInputElement>(
+      'input[type="radio"]',
+    );
     expect(getRadioValue(radios)).toBe('y');
     container.remove();
   });
@@ -55,14 +61,16 @@ describe('getRadioValue', () => {
       <input type="radio" name="r" value="y">
     `;
     document.body.appendChild(container);
-    const radios = container.querySelectorAll<HTMLInputElement>('input[type="radio"]');
+    const radios = container.querySelectorAll<HTMLInputElement>(
+      'input[type="radio"]',
+    );
     expect(getRadioValue(radios)).toBeNull();
     container.remove();
   });
 });
 
 describe('getInputValue', () => {
-  it('retourne la valeur d\'un input text non vide', () => {
+  it("retourne la valeur d'un input text non vide", () => {
     const input = document.createElement('input');
     input.type = 'text';
     input.value = 'hello';
@@ -83,14 +91,14 @@ describe('getInputValue', () => {
     expect(getInputValue(input)).toBeNull();
   });
 
-  it('retourne la valeur d\'un input number', () => {
+  it("retourne la valeur d'un input number", () => {
     const input = document.createElement('input');
     input.type = 'number';
     input.value = '42';
     expect(getInputValue(input)).toBe('42');
   });
 
-  it('retourne la valeur d\'un input hidden', () => {
+  it("retourne la valeur d'un input hidden", () => {
     const input = document.createElement('input');
     input.type = 'hidden';
     input.value = 'secret';
@@ -99,7 +107,7 @@ describe('getInputValue', () => {
 });
 
 describe('getSelectValue', () => {
-  it('retourne la valeur sélectionnée d\'un select simple', () => {
+  it("retourne la valeur sélectionnée d'un select simple", () => {
     const select = document.createElement('select');
     select.innerHTML = `
       <option value="a">A</option>
@@ -127,13 +135,13 @@ describe('getSelectValue', () => {
       <option value="b">B</option>
     `;
     // Désélectionner tout
-    Array.from(select.options).forEach(o => (o.selected = false));
+    Array.from(select.options).forEach((o) => (o.selected = false));
     expect(getSelectValue(select)).toBeNull();
   });
 });
 
 describe('getTextareaValue', () => {
-  it('retourne la valeur d\'un textarea non vide', () => {
+  it("retourne la valeur d'un textarea non vide", () => {
     const textarea = document.createElement('textarea');
     textarea.value = 'contenu';
     expect(getTextareaValue(textarea)).toBe('contenu');

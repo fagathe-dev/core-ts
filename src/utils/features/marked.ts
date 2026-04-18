@@ -17,7 +17,7 @@ export const highlightExtension: MarkedExtension = {
     {
       name: 'highlight',
       level: 'inline',
-      
+
       start(src: string) {
         // Indique à marked où commence potentiellement le prochain token
         return src.indexOf('==');
@@ -34,8 +34,8 @@ export const highlightExtension: MarkedExtension = {
 
           return {
             type: 'highlight',
-            raw: match[0],   // La chaîne complète : ==texte==
-            text,            // Le contenu : texte
+            raw: match[0], // La chaîne complète : ==texte==
+            text, // Le contenu : texte
             // Analyse récursive du contenu (permet le gras/italique à l'intérieur)
             tokens: this.lexer.inlineTokens(text),
           };
@@ -46,7 +46,7 @@ export const highlightExtension: MarkedExtension = {
       renderer(token) {
         // On cast le token générique vers notre interface pour accéder à .tokens proprement
         const highlightToken = token as HighlightToken;
-        
+
         return `<mark>${this.parser.parseInline(highlightToken.tokens)}</mark>`;
       },
     },
@@ -69,6 +69,6 @@ export const convertMarkdownToHtml = (markdownText: string): string => {
   // 3. On force async: false pour garantir le retour d'une string (et non une Promise)
   // et on gère proprement les sauts de ligne avec gfm: true (recommandé)
   const html = marked.parse(markdownText, { async: false, gfm: true });
-  
+
   return html as string;
 };

@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { fillTextarea, fillInput, fillRadio, selectOption, fillCheckboxes } from './fill';
+import {
+  fillTextarea,
+  fillInput,
+  fillRadio,
+  selectOption,
+  fillCheckboxes,
+} from './fill';
 
 describe('fillTextarea', () => {
   it('remplit un textarea avec la valeur donnée', () => {
@@ -46,7 +52,9 @@ describe('fillRadio', () => {
       <input type="radio" name="color" value="blue">
     `;
     fillRadio('color', 'blue');
-    const radios = document.querySelectorAll<HTMLInputElement>('input[name="color"]');
+    const radios = document.querySelectorAll<HTMLInputElement>(
+      'input[name="color"]',
+    );
     // Le comportement du code source fait que les radios sont tous décochés à la fin
     // car la boucle passe sur chaque input et le dernier else remet checked = false
     // C'est un bug connu dans le code source
@@ -61,7 +69,8 @@ describe('fillRadio', () => {
       <input type="radio" name="size" value="m">
     `;
     fillRadio('size', null);
-    const radios = document.querySelectorAll<HTMLInputElement>('input[name="size"]');
+    const radios =
+      document.querySelectorAll<HTMLInputElement>('input[name="size"]');
     radios.forEach((r) => expect(r.checked).toBe(false));
     document.body.innerHTML = '';
   });
@@ -70,7 +79,8 @@ describe('fillRadio', () => {
 describe('selectOption', () => {
   it('sélectionne une option par valeur', () => {
     const select = document.createElement('select');
-    select.innerHTML = '<option value="a">A</option><option value="b">B</option>';
+    select.innerHTML =
+      '<option value="a">A</option><option value="b">B</option>';
     selectOption(select, 'b');
     expect(select.value).toBe('b');
   });
@@ -78,7 +88,8 @@ describe('selectOption', () => {
   it('sélectionne plusieurs options dans un select multiple', () => {
     const select = document.createElement('select');
     select.multiple = true;
-    select.innerHTML = '<option value="a">A</option><option value="b">B</option><option value="c">C</option>';
+    select.innerHTML =
+      '<option value="a">A</option><option value="b">B</option><option value="c">C</option>';
     selectOption(select, ['a', 'c']);
     const selected = Array.from(select.selectedOptions).map((o) => o.value);
     expect(selected).toEqual(['a', 'c']);
@@ -93,7 +104,8 @@ describe('fillCheckboxes', () => {
       <input type="checkbox" name="tags" value="py">
     `;
     fillCheckboxes('tags', ['js', 'py']);
-    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[name="tags"]');
+    const checkboxes =
+      document.querySelectorAll<HTMLInputElement>('input[name="tags"]');
     expect(checkboxes[0].checked).toBe(true);
     expect(checkboxes[1].checked).toBe(false);
     expect(checkboxes[2].checked).toBe(true);

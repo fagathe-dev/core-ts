@@ -29,7 +29,7 @@ describe('DragNDrop', () => {
     container.remove();
   });
 
-  it('s\'initialise avec un sélecteur string', () => {
+  it("s'initialise avec un sélecteur string", () => {
     const dnd = new DragNDrop({
       container: '#drag-container',
       itemSelector: '.file-row',
@@ -37,7 +37,7 @@ describe('DragNDrop', () => {
     expect(dnd).toBeInstanceOf(DragNDrop);
   });
 
-  it('s\'initialise avec un élément HTML', () => {
+  it("s'initialise avec un élément HTML", () => {
     const dnd = new DragNDrop({
       container,
       itemSelector: '.file-row',
@@ -53,7 +53,7 @@ describe('DragNDrop', () => {
     });
     expect(consoleSpy).toHaveBeenCalledWith(
       expect.stringContaining('Conteneur introuvable'),
-      '#non-existent'
+      '#non-existent',
     );
     consoleSpy.mockRestore();
   });

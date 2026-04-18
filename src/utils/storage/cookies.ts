@@ -51,7 +51,7 @@ export class CookieHelper {
    */
   public static get(
     key: string,
-    defaultValue: string | null = null
+    defaultValue: string | null = null,
   ): string | null {
     // Correction: Assurez-vous que l'accès à la clé utilise le même mécanisme que getAll
     // getAll() retourne un objet dont les clés sont les noms des cookies.
@@ -68,7 +68,7 @@ export class CookieHelper {
   public static set(
     key: string,
     value: string,
-    expireDays: number = 365
+    expireDays: number = 365,
   ): void {
     const date = new Date();
     date.setTime(date.getTime() + expireDays * 24 * 60 * 60 * 1000);
@@ -76,7 +76,7 @@ export class CookieHelper {
 
     // Ajoute SameSite=Lax et Secure si HTTPS est utilisé
     const baseCookie = `${encodeURIComponent(key)}=${encodeURIComponent(
-      value
+      value,
     )}; expires=${expires}; path=/; SameSite=Lax`;
 
     // Ajoute 'Secure' uniquement si l'application est en HTTPS
@@ -95,7 +95,7 @@ export class CookieHelper {
     const date = new Date(0).toUTCString();
     // Path=/ est essentiel pour garantir que le bon cookie est supprimé
     document.cookie = `${encodeURIComponent(
-      key
+      key,
     )}=; expires=${date}; path=/; SameSite=Lax`;
   }
 

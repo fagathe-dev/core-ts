@@ -75,7 +75,7 @@ describe('FileSizeFormatter', () => {
 
     it('lance une erreur pour un format invalide', () => {
       expect(() => FileSizeFormatter.parse('abc')).toThrow(
-        'FileSizeFormatter: Format de taille invalide'
+        'FileSizeFormatter: Format de taille invalide',
       );
     });
   });

@@ -77,10 +77,12 @@ describe('StorageService', () => {
     });
   });
 
-  describe('set retourne false en cas d\'erreur de quota', () => {
-    it('gère l\'erreur QuotaExceededError', () => {
+  describe("set retourne false en cas d'erreur de quota", () => {
+    it("gère l'erreur QuotaExceededError", () => {
       const storage = new StorageService('local');
-      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi
+        .spyOn(console, 'error')
+        .mockImplementation(() => {});
 
       // Simuler une erreur de quota
       vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {

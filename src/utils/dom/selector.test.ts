@@ -41,11 +41,16 @@ describe('$', () => {
 
   it('limite la recherche à un parent donné', () => {
     container.innerHTML = '<span class="scoped">Inside</span>';
-    document.body.insertAdjacentHTML('beforeend', '<span class="scoped">Outside</span>');
+    document.body.insertAdjacentHTML(
+      'beforeend',
+      '<span class="scoped">Outside</span>',
+    );
     const result = $<HTMLSpanElement>('.scoped', false, container);
     expect(result).toBeInstanceOf(HTMLElement);
     expect((result as HTMLElement).textContent).toBe('Inside');
-    document.body.querySelector('span.scoped:not(#test-container span.scoped)')?.remove();
+    document.body
+      .querySelector('span.scoped:not(#test-container span.scoped)')
+      ?.remove();
   });
 
   it('retourne une NodeList vide avec asList=true et aucun match', () => {

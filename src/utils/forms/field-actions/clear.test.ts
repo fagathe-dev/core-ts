@@ -61,7 +61,7 @@ describe('clearInput', () => {
 });
 
 describe('clearSelect', () => {
-  it('désélectionne toutes les options d\'un select multiple', () => {
+  it("désélectionne toutes les options d'un select multiple", () => {
     const select = document.createElement('select');
     select.multiple = true;
     select.innerHTML = `

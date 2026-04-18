@@ -60,7 +60,7 @@ describe('capitalize', () => {
     expect(capitalize('hELLO')).toBe('Hello');
   });
 
-  it('gère une chaîne d\'un seul caractère', () => {
+  it("gère une chaîne d'un seul caractère", () => {
     expect(capitalize('a')).toBe('A');
   });
 
@@ -161,7 +161,7 @@ describe('camelCase', () => {
     expect(camelCase('hello world')).toBe('helloWorld');
   });
 
-  it('gère une chaîne d\'un seul mot', () => {
+  it("gère une chaîne d'un seul mot", () => {
     expect(camelCase('hello')).toBe('hello');
   });
 
@@ -286,7 +286,7 @@ describe('escapeHtml', () => {
   });
 
   it('échappe les apostrophes', () => {
-    expect(escapeHtml("l'arbre")).toBe("l&#039;arbre");
+    expect(escapeHtml("l'arbre")).toBe('l&#039;arbre');
   });
 
   it('échappe les esperluettes', () => {
@@ -307,7 +307,7 @@ describe('escapeHtml', () => {
 
   it('gère un mélange de caractères spéciaux', () => {
     expect(escapeHtml('<div class="a">&</div>')).toBe(
-      '&lt;div class=&quot;a&quot;&gt;&amp;&lt;/div&gt;'
+      '&lt;div class=&quot;a&quot;&gt;&amp;&lt;/div&gt;',
     );
   });
 });

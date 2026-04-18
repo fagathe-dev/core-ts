@@ -1,5 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { copyToClipboard, isClipboardSupported, copyElementContent } from './clipboard';
+import {
+  copyToClipboard,
+  isClipboardSupported,
+  copyElementContent,
+} from './clipboard';
 
 describe('copyToClipboard', () => {
   beforeEach(() => {
@@ -11,7 +15,10 @@ describe('copyToClipboard', () => {
     Object.assign(navigator, {
       clipboard: { writeText: writeTextMock },
     });
-    Object.defineProperty(window, 'isSecureContext', { value: true, writable: true });
+    Object.defineProperty(window, 'isSecureContext', {
+      value: true,
+      writable: true,
+    });
 
     const result = await copyToClipboard('test text');
     expect(result.success).toBe(true);
@@ -22,7 +29,10 @@ describe('copyToClipboard', () => {
     Object.assign(navigator, {
       clipboard: { writeText: vi.fn().mockRejectedValue(new Error('fail')) },
     });
-    Object.defineProperty(window, 'isSecureContext', { value: true, writable: true });
+    Object.defineProperty(window, 'isSecureContext', {
+      value: true,
+      writable: true,
+    });
 
     const result = await copyToClipboard('test text');
     expect(result.success).toBe(false);
@@ -31,13 +41,13 @@ describe('copyToClipboard', () => {
 });
 
 describe('copyElementContent', () => {
-  it('retourne une erreur si l\'élément n\'existe pas', async () => {
+  it("retourne une erreur si l'élément n'existe pas", async () => {
     const result = await copyElementContent('non-existent-id');
     expect(result.success).toBe(false);
     expect(result.error).toContain('non-existent-id');
   });
 
-  it('copie le contenu textuel d\'un élément', async () => {
+  it("copie le contenu textuel d'un élément", async () => {
     const el = document.createElement('div');
     el.id = 'copy-target';
     el.textContent = 'Hello Copy';
@@ -47,7 +57,10 @@ describe('copyElementContent', () => {
     Object.assign(navigator, {
       clipboard: { writeText: writeTextMock },
     });
-    Object.defineProperty(window, 'isSecureContext', { value: true, writable: true });
+    Object.defineProperty(window, 'isSecureContext', {
+      value: true,
+      writable: true,
+    });
 
     const result = await copyElementContent('copy-target');
     expect(result.success).toBe(true);

@@ -25,7 +25,7 @@ class StorageService {
 
     if (!this.isAvailable) {
       console.warn(
-        `Le stockage (${storageStrategy}) n'est pas disponible dans cet environnement.`
+        `Le stockage (${storageStrategy}) n'est pas disponible dans cet environnement.`,
       );
     }
   }
@@ -99,7 +99,7 @@ class StorageService {
           error.name === 'QuotaExceededError')
       ) {
         console.error(
-          `Erreur : Quota de stockage dépassé pour la clé "${key}".`
+          `Erreur : Quota de stockage dépassé pour la clé "${key}".`,
         );
       } else {
         console.error(`Erreur de sauvegarde de la clé "${key}" :`, error);

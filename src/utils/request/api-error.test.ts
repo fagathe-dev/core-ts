@@ -6,7 +6,12 @@ describe('ApiError', () => {
     new Response(null, { status, statusText });
 
   it('est une instance de Error', () => {
-    const error = new ApiError(400, 'Bad Request', 'Test', createMockResponse());
+    const error = new ApiError(
+      400,
+      'Bad Request',
+      'Test',
+      createMockResponse(),
+    );
     expect(error).toBeInstanceOf(Error);
     expect(error).toBeInstanceOf(ApiError);
   });
@@ -39,38 +44,58 @@ describe('ApiError', () => {
 
   describe('isClientError', () => {
     it('retourne true pour les erreurs 4xx', () => {
-      expect(new ApiError(400, '', '', createMockResponse()).isClientError()).toBe(true);
-      expect(new ApiError(404, '', '', createMockResponse()).isClientError()).toBe(true);
-      expect(new ApiError(499, '', '', createMockResponse()).isClientError()).toBe(true);
+      expect(
+        new ApiError(400, '', '', createMockResponse()).isClientError(),
+      ).toBe(true);
+      expect(
+        new ApiError(404, '', '', createMockResponse()).isClientError(),
+      ).toBe(true);
+      expect(
+        new ApiError(499, '', '', createMockResponse()).isClientError(),
+      ).toBe(true);
     });
 
     it('retourne false pour les erreurs 5xx', () => {
-      expect(new ApiError(500, '', '', createMockResponse()).isClientError()).toBe(false);
+      expect(
+        new ApiError(500, '', '', createMockResponse()).isClientError(),
+      ).toBe(false);
     });
 
     it('retourne false pour les succès 2xx', () => {
-      expect(new ApiError(200, '', '', createMockResponse()).isClientError()).toBe(false);
+      expect(
+        new ApiError(200, '', '', createMockResponse()).isClientError(),
+      ).toBe(false);
     });
   });
 
   describe('isServerError', () => {
     it('retourne true pour les erreurs 5xx', () => {
-      expect(new ApiError(500, '', '', createMockResponse()).isServerError()).toBe(true);
-      expect(new ApiError(503, '', '', createMockResponse()).isServerError()).toBe(true);
+      expect(
+        new ApiError(500, '', '', createMockResponse()).isServerError(),
+      ).toBe(true);
+      expect(
+        new ApiError(503, '', '', createMockResponse()).isServerError(),
+      ).toBe(true);
     });
 
     it('retourne false pour les erreurs 4xx', () => {
-      expect(new ApiError(400, '', '', createMockResponse()).isServerError()).toBe(false);
+      expect(
+        new ApiError(400, '', '', createMockResponse()).isServerError(),
+      ).toBe(false);
     });
   });
 
   describe('isNetworkError', () => {
     it('retourne true pour status 0', () => {
-      expect(new ApiError(0, '', '', createMockResponse()).isNetworkError()).toBe(true);
+      expect(
+        new ApiError(0, '', '', createMockResponse()).isNetworkError(),
+      ).toBe(true);
     });
 
     it('retourne false pour status non-0', () => {
-      expect(new ApiError(500, '', '', createMockResponse()).isNetworkError()).toBe(false);
+      expect(
+        new ApiError(500, '', '', createMockResponse()).isNetworkError(),
+      ).toBe(false);
     });
   });
 
@@ -82,14 +107,14 @@ describe('ApiError', () => {
       expect(error.getErrorMessage()).toBe('Custom error');
     });
 
-    it('retourne le message de l\'erreur si data n\'a pas de message', () => {
+    it("retourne le message de l'erreur si data n'a pas de message", () => {
       const error = new ApiError(400, '', 'fallback', createMockResponse(), {
         code: 'ERR',
       });
       expect(error.getErrorMessage()).toBe('fallback');
     });
 
-    it('retourne le message de l\'erreur si data est undefined', () => {
+    it("retourne le message de l'erreur si data est undefined", () => {
       const error = new ApiError(400, '', 'fallback', createMockResponse());
       expect(error.getErrorMessage()).toBe('fallback');
     });
@@ -105,7 +130,7 @@ describe('ApiError', () => {
       expect(error.getValidationErrors()).toEqual(errors);
     });
 
-    it('retourne null si pas d\'erreurs de validation', () => {
+    it("retourne null si pas d'erreurs de validation", () => {
       const error = new ApiError(400, '', '', createMockResponse(), {
         message: 'Error',
       });

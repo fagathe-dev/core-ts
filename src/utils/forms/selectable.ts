@@ -1,4 +1,4 @@
-import { SelectableOptions } from "@/types/index.d";
+import { SelectableOptions } from '@/types/index.d';
 
 class SelectableField {
   private items: NodeListOf<HTMLElement>;

@@ -44,7 +44,7 @@ export const clearInput = (input: HTMLInputElement): void => {
  * @param {HTMLSelectElement} select
  */
 export const clearSelect = (select: HTMLSelectElement): void => {
-  Array.from(select.options).forEach(option => {
+  Array.from(select.options).forEach((option) => {
     option.selected = false;
   });
 
@@ -60,12 +60,12 @@ export const clearSelect = (select: HTMLSelectElement): void => {
  */
 export const clearFeedback = (
   form: HTMLFormElement,
-  feedbackClass: string
+  feedbackClass: string,
 ): void => {
   const feedbackElements = $(
     `.${feedbackClass}`,
     true,
-    form
+    form,
   ) as NodeListOf<HTMLElement>;
 
   feedbackElements.forEach((element: HTMLElement) => {
@@ -80,7 +80,7 @@ export const clearFeedback = (
  */
 export const clearValidation = (
   form: HTMLFormElement,
-  validationClass: string
+  validationClass: string,
 ): void => {
   const fields = $(validationClass, true, form) as NodeListOf<HTMLElement>;
 

@@ -34,7 +34,7 @@ describe('convertMarkdownToHtml', () => {
     expect(result).toContain('href="https://google.com"');
   });
 
-  it('supporte l\'extension highlight ==texte==', () => {
+  it("supporte l'extension highlight ==texte==", () => {
     const result = convertMarkdownToHtml('==surligné==');
     expect(result).toContain('<mark>');
     expect(result).toContain('surligné');

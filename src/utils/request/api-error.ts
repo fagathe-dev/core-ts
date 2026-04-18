@@ -19,7 +19,7 @@ export class ApiError<T = ApiErrorData> extends Error {
     statusText: string,
     message: string,
     response: Response,
-    data?: T
+    data?: T,
   ) {
     super(message);
     this.name = 'ApiError';

@@ -12,14 +12,14 @@ const insertElementToDOM = (
   parent: HTMLElement | null,
 ): void => {
   if (position === null) {
-    position = "beforeend";
+    position = 'beforeend';
   }
 
   if (parent === null) {
     parent = document.body;
   }
 
-  if (typeof element === "string") {
+  if (typeof element === 'string') {
     parent.insertAdjacentHTML(position, element);
 
     return;

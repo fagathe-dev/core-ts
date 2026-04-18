@@ -18,7 +18,7 @@ describe('CookieHelper', () => {
       expect(CookieHelper.get('test_key')).toBe('test_value');
     });
 
-    it('retourne la valeur par défaut si le cookie n\'existe pas', () => {
+    it("retourne la valeur par défaut si le cookie n'existe pas", () => {
       expect(CookieHelper.get('inexistant')).toBeNull();
       expect(CookieHelper.get('inexistant', 'fallback')).toBe('fallback');
     });
@@ -30,7 +30,7 @@ describe('CookieHelper', () => {
       expect(CookieHelper.has('exists')).toBe(true);
     });
 
-    it('retourne false si le cookie n\'existe pas', () => {
+    it("retourne false si le cookie n'existe pas", () => {
       expect(CookieHelper.has('nope')).toBe(false);
     });
   });

@@ -17,7 +17,7 @@ interface RouteParams extends Record<string, string | number | boolean> {}
 const router = (
   path: string,
   params: RouteParams = {},
-  absoluteUrl: boolean = false
+  absoluteUrl: boolean = false,
 ): string => {
   // 1. Remplacement des paramètres de chemin ({parametre})
   const remainingParams: RouteParams = { ...params };
@@ -70,7 +70,7 @@ const router = (
       // Le "baseUrl" relatif doit être sans le slash initial pour fonctionner parfaitement avec l'origine.
       const url = new URL(
         baseUrl.startsWith('/') ? baseUrl : `/${baseUrl}`,
-        window.location.origin
+        window.location.origin,
       );
 
       // On retourne l'URL complète

@@ -23,11 +23,15 @@ describe('ensureDate', () => {
   });
 
   it('lance une erreur pour un objet Date invalide', () => {
-    expect(() => ensureDate(new Date('invalid'))).toThrow('Invalid Date object passed');
+    expect(() => ensureDate(new Date('invalid'))).toThrow(
+      'Invalid Date object passed',
+    );
   });
 
   it('lance une erreur pour une chaîne invalide', () => {
-    expect(() => ensureDate('not-a-date')).toThrow('Invalid date string: not-a-date');
+    expect(() => ensureDate('not-a-date')).toThrow(
+      'Invalid date string: not-a-date',
+    );
   });
 
   it('lance une erreur pour une chaîne vide', () => {

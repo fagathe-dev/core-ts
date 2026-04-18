@@ -20,7 +20,7 @@ type ElementOrList<T extends HTMLElement> = T | NodeListOf<T>;
 const $ = <T extends HTMLElement>(
   selector: string,
   asList: boolean = false,
-  parent: Document | HTMLElement = document
+  parent: Document | HTMLElement = document,
 ): ElementOrList<T> | null => {
   const elements = parent.querySelectorAll<T>(selector);
 
@@ -36,6 +36,6 @@ const $ = <T extends HTMLElement>(
 
   // Si aucun élément n'est trouvé.
   return null;
-}
+};
 
 export { $ };

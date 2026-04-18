@@ -18,13 +18,19 @@ describe('createElement', () => {
   });
 
   it('applique des attributs string', () => {
-    const el = createElement('a', undefined, undefined, { href: '/test', title: 'Link' });
+    const el = createElement('a', undefined, undefined, {
+      href: '/test',
+      title: 'Link',
+    });
     expect(el.getAttribute('href')).toBe('/test');
     expect(el.getAttribute('title')).toBe('Link');
   });
 
   it('applique des attributs booléens true', () => {
-    const el = createElement('input', undefined, undefined, { required: true, disabled: true });
+    const el = createElement('input', undefined, undefined, {
+      required: true,
+      disabled: true,
+    });
     expect(el.hasAttribute('required')).toBe(true);
     expect(el.getAttribute('required')).toBe('');
   });

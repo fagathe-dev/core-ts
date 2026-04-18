@@ -11,9 +11,9 @@ describe('router', () => {
   });
 
   it('remplace plusieurs paramètres de chemin', () => {
-    expect(router('/lists/{listId}/items/{itemId}', { listId: 1, itemId: 5 })).toBe(
-      '/lists/1/items/5'
-    );
+    expect(
+      router('/lists/{listId}/items/{itemId}', { listId: 1, itemId: 5 }),
+    ).toBe('/lists/1/items/5');
   });
 
   it('ajoute les paramètres restants en query string', () => {
