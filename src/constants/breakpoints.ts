@@ -1,4 +1,4 @@
-import { BreakPointsInterface } from '../types/index.d';
+import { BreakPointsInterface } from '@/types/index.d';
 
 // Constantes des breakpoints correspondant aux valeurs SCSS
 export const BREAKPOINTS: BreakPointsInterface = {

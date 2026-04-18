@@ -3,10 +3,7 @@
  * avec les champs calculés : iconClass, iconColor, formattedSize, uploadedBy.
  */
 
-import type { File } from '@/types';
-import type { FileProps } from '@/components/File';
-import { FileSizeFormatter } from './FileSizeFormatter';
-
+// TODO: - Revoir le mapping des extensions vers les icônes par rapport au changement de lib d'icônes (FontAwesome 5 -> remix ou autres icônes dispo avec le thème Velzon) et à l'ajout de nouvelles extensions (csv, webp, etc.)
 const FILE_ICON_MAP: Record<string, { icon: string; color: string }> = {
   pdf: { icon: 'fas fa-file-pdf', color: 'danger' },
   doc: { icon: 'fas fa-file-word', color: 'primary' },
@@ -41,16 +38,4 @@ const FILE_ICON_MAP: Record<string, { icon: string; color: string }> = {
 
 const DEFAULT_ICON = { icon: 'fas fa-file', color: 'muted' };
 
-export function enrichFileProps(file: File): FileProps {
-  const ext = (file.type ?? '').toLowerCase();
-  const mapping = FILE_ICON_MAP[ext] ?? DEFAULT_ICON;
-
-  return {
-    ...file,
-    iconClass: mapping.icon,
-    iconColor: mapping.color,
-    formattedSize: FileSizeFormatter.format(file.size),
-    uploadedBy: '',
-    uploadedAt: file.uploadedAt ?? (file as any).createdAt ?? '',
-  };
-}
+export { FILE_ICON_MAP, DEFAULT_ICON };

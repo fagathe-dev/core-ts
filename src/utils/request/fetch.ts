@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { API_TOKEN_COOKIE_NAME } from '@/constants';
+import { API_TOKEN_COOKIE_NAME } from '@/constants/index.ts';
 import type { FetchResponse, RequestOptions } from '@/types';
 import { ApiError } from './api-error';
 import { CookieHelper } from '@/utils/storage/cookies';
@@ -19,7 +19,13 @@ export interface AuthenticatedRequestOptions extends RequestOptions {
   isAPIAuthenticated?: boolean;
   onUploadProgress?: (progressEvent: any) => void;
   onDownloadProgress?: (progressEvent: any) => void;
-  responseType?: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream';
+  responseType?:
+    | 'arraybuffer'
+    | 'blob'
+    | 'document'
+    | 'json'
+    | 'text'
+    | 'stream';
 }
 
 /**
@@ -33,7 +39,7 @@ export interface AuthenticatedRequestOptions extends RequestOptions {
  */
 export const fetchAPI = async <T = any>(
   url: string,
-  options: RequestInit & AuthenticatedRequestOptions = {}
+  options: RequestInit & AuthenticatedRequestOptions = {},
 ): Promise<FetchResponse<T>> => {
   const {
     timeout = DEFAULT_FETCH_API_CONFIG.timeout,
@@ -68,8 +74,11 @@ export const fetchAPI = async <T = any>(
 
   // Axios n'aime pas le header application/json forcé si les données sont un FormData
   // (Sinon le navigateur ne peut pas générer le boundary automatiquement)
-  if (bodyData instanceof FormData && headers['Content-Type'] === 'application/json') {
-      delete headers['Content-Type'];
+  if (
+    bodyData instanceof FormData &&
+    headers['Content-Type'] === 'application/json'
+  ) {
+    delete headers['Content-Type'];
   }
 
   // --- LOGIQUE D'AUTHENTIFICATION API TOKEN ---
@@ -79,7 +88,7 @@ export const fetchAPI = async <T = any>(
       headers['X-AUTH-TOKEN'] = apiToken;
     } else {
       console.warn(
-        `Token API (${API_TOKEN_COOKIE_NAME}) manquant pour une requête authentifiée vers ${url}`
+        `Token API (${API_TOKEN_COOKIE_NAME}) manquant pour une requête authentifiée vers ${url}`,
       );
     }
   }
@@ -113,35 +122,42 @@ export const fetchAPI = async <T = any>(
       let blob: Blob;
 
       if (response.data instanceof Blob) {
-          blob = response.data;
-          data = {} as T;
+        blob = response.data;
+        data = {} as T;
       } else {
-          textContent = typeof response.data === 'string' ? response.data : JSON.stringify(response.data);
-          blob = new Blob([textContent]); // Fallback propre
-          try {
-            data = textContent ? JSON.parse(textContent) : ({} as T);
-          } catch (e) {
-            data = {} as T;
-          }
+        textContent =
+          typeof response.data === 'string'
+            ? response.data
+            : JSON.stringify(response.data);
+        blob = new Blob([textContent]); // Fallback propre
+        try {
+          data = textContent ? JSON.parse(textContent) : ({} as T);
+        } catch (e) {
+          data = {} as T;
+        }
       }
 
       // Re-créer des Headers "type fetch" pour la rétrocompatibilité
       const fetchHeaders = new Headers();
       if (response.headers) {
-         Object.entries(response.headers).forEach(([key, value]) => {
-            if (typeof value === 'string') fetchHeaders.append(key, value);
-            else if (Array.isArray(value)) value.forEach(v => fetchHeaders.append(key, String(v)));
-         });
+        Object.entries(response.headers).forEach(([key, value]) => {
+          if (typeof value === 'string') fetchHeaders.append(key, value);
+          else if (Array.isArray(value))
+            value.forEach((v) => fetchHeaders.append(key, String(v)));
+        });
       }
 
       const isOk = response.status >= 200 && response.status < 300;
-      
+
       // On simule une Response Native Fetch pour l'injecter dans ton objet ApiError
-      const nativeResponse = new Response(response.data instanceof Blob ? response.data : textContent, {
-         status: response.status,
-         statusText: response.statusText,
-         headers: fetchHeaders
-      });
+      const nativeResponse = new Response(
+        response.data instanceof Blob ? response.data : textContent,
+        {
+          status: response.status,
+          statusText: response.statusText,
+          headers: fetchHeaders,
+        },
+      );
 
       // Create the response object
       const apiResponse: FetchResponse<T> = {
@@ -163,7 +179,7 @@ export const fetchAPI = async <T = any>(
             ? String((data as any).message)
             : `Request failed with status ${response.status}`,
           nativeResponse,
-          data
+          data,
         );
       }
 
@@ -190,13 +206,16 @@ export const fetchAPI = async <T = any>(
   }
 
   // Handle timeout specifically
-  if (axios.isCancel(lastError) || (lastError instanceof DOMException && lastError.name === 'AbortError')) {
+  if (
+    axios.isCancel(lastError) ||
+    (lastError instanceof DOMException && lastError.name === 'AbortError')
+  ) {
     throw new ApiError(
       408,
       'Request Timeout',
       `Request timed out after ${timeout}ms (${retries + 1} attempts)`,
       new Response(),
-      { message: 'Request Timeout' } as T
+      { message: 'Request Timeout' } as T,
     );
   }
 
@@ -206,7 +225,7 @@ export const fetchAPI = async <T = any>(
     'Network Error',
     lastError instanceof Error ? lastError.message : 'Unknown error occurred',
     new Response(),
-    { message: 'Network Error' } as T
+    { message: 'Network Error' } as T,
   );
 };
 
@@ -215,7 +234,7 @@ export const fetchAPI = async <T = any>(
  */
 export const fetchGET = async <T = any>(
   url: string,
-  options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {}
+  options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {},
 ): Promise<FetchResponse<T>> => {
   return fetchAPI<T>(url, { ...options, method: 'GET' });
 };
@@ -226,7 +245,7 @@ export const fetchGET = async <T = any>(
 export const fetchPOST = async <T = any>(
   url: string,
   body?: any,
-  options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {}
+  options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {},
 ): Promise<FetchResponse<T>> => {
   const requestOptions: RequestInit & AuthenticatedRequestOptions = {
     ...options,
@@ -246,7 +265,7 @@ export const fetchPOST = async <T = any>(
 export const fetchPUT = async <T = any>(
   url: string,
   body?: any,
-  options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {}
+  options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {},
 ): Promise<FetchResponse<T>> => {
   const requestOptions: RequestInit & AuthenticatedRequestOptions = {
     ...options,
@@ -266,7 +285,7 @@ export const fetchPUT = async <T = any>(
 export const fetchPATCH = async <T = any>(
   url: string,
   body?: any,
-  options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {}
+  options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {},
 ): Promise<FetchResponse<T>> => {
   const requestOptions: RequestInit & AuthenticatedRequestOptions = {
     ...options,
@@ -285,7 +304,7 @@ export const fetchPATCH = async <T = any>(
  */
 export const fetchDELETE = async <T = any>(
   url: string,
-  options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {}
+  options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {},
 ): Promise<FetchResponse<T>> => {
   return fetchAPI<T>(url, { ...options, method: 'DELETE' });
 };
@@ -296,7 +315,7 @@ export const fetchDELETE = async <T = any>(
 export const handleApiResponse = async <T = any>(
   responsePromise: Promise<FetchResponse<T>>,
   onSuccess?: (data: T) => void,
-  onError?: (error: ApiError) => void
+  onError?: (error: ApiError) => void,
 ): Promise<T | null> => {
   try {
     const response = await responsePromise;
@@ -319,12 +338,12 @@ export const handleApiResponse = async <T = any>(
  */
 export const createApiClient = (
   baseURL: string,
-  defaultOptions: AuthenticatedRequestOptions = {}
+  defaultOptions: AuthenticatedRequestOptions = {},
 ) => {
   return {
     get: <T = any>(
       endpoint: string,
-      options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {}
+      options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {},
     ) =>
       fetchGET<T>(`${baseURL}${endpoint}`, {
         ...defaultOptions,
@@ -334,7 +353,7 @@ export const createApiClient = (
     post: <T = any>(
       endpoint: string,
       body?: any,
-      options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {}
+      options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {},
     ) =>
       fetchPOST<T>(`${baseURL}${endpoint}`, body, {
         ...defaultOptions,
@@ -344,7 +363,7 @@ export const createApiClient = (
     put: <T = any>(
       endpoint: string,
       body?: any,
-      options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {}
+      options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {},
     ) =>
       fetchPUT<T>(`${baseURL}${endpoint}`, body, {
         ...defaultOptions,
@@ -354,7 +373,7 @@ export const createApiClient = (
     patch: <T = any>(
       endpoint: string,
       body?: any,
-      options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {}
+      options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {},
     ) =>
       fetchPATCH<T>(`${baseURL}${endpoint}`, body, {
         ...defaultOptions,
@@ -363,7 +382,7 @@ export const createApiClient = (
 
     delete: <T = any>(
       endpoint: string,
-      options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {}
+      options: Omit<AuthenticatedRequestOptions, 'method' | 'body'> = {},
     ) =>
       fetchDELETE<T>(`${baseURL}${endpoint}`, {
         ...defaultOptions,

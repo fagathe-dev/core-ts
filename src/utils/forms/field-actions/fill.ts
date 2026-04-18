@@ -1,4 +1,4 @@
-import { $ } from '../../dom/selector';
+import { $ } from '@/utils/dom/selector';
 
 /**
  * Remplit une zone de texte avec le texte fourni et déclenche l'événement 'input'.
@@ -8,7 +8,7 @@ import { $ } from '../../dom/selector';
  */
 export const fillTextarea = (
   textarea: HTMLTextAreaElement,
-  text: string
+  text: string,
 ): void => {
   textarea.value = text;
   const event = new Event('input', { bubbles: true });
@@ -23,7 +23,7 @@ export const fillTextarea = (
  */
 export const fillInput = (
   input: HTMLInputElement,
-  value: string | number | boolean
+  value: string | number | boolean,
 ): void => {
   const { type } = input;
 
@@ -51,17 +51,17 @@ export const fillInput = (
  */
 export const fillRadio = (
   name: string,
-  value: string | number | boolean | null
+  value: string | number | boolean | null,
 ): void => {
   // Convertir la valeur cible en chaîne pour la comparaison avec input.value.
   const targetValue = String(value);
 
   // Sélectionner tous les boutons radio appartenant à ce groupe.
   const radioButtons: NodeListOf<HTMLInputElement> = document.querySelectorAll(
-    `input[type="radio"][name="${name}"]`
+    `input[type="radio"][name="${name}"]`,
   );
 
-  radioButtons.forEach(input => {
+  radioButtons.forEach((input) => {
     // Vérifier si la valeur du bouton correspond à la valeur cible
     if (input.value === targetValue) {
       input.checked = true;
@@ -87,12 +87,12 @@ export const fillRadio = (
  */
 export const selectOption = (
   select: HTMLSelectElement,
-  value: string | string[]
+  value: string | string[],
 ): void => {
   const isMultiple = select.multiple;
   const values = Array.isArray(value) ? value : [value];
 
-  Array.from(select.options).forEach(option => {
+  Array.from(select.options).forEach((option) => {
     option.selected = values.includes(option.value);
   });
 
@@ -104,10 +104,10 @@ export const fillCheckboxes = (name: string, values: string[]): void => {
   // Sélectionne toutes les checkboxes qui ont ce nom
   const checkboxes: NodeListOf<HTMLInputElement> = $(
     `input[type="checkbox"][name="${name}"]`,
-    true
+    true,
   ) as NodeListOf<HTMLInputElement>;
 
-  checkboxes.forEach(input => {
+  checkboxes.forEach((input) => {
     // Coche l'input si sa valeur est présente dans le tableau 'values'
     input.checked = values.includes(input.value);
 

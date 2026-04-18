@@ -1,0 +1,5 @@
+# On formate le code automatiquement (c'est cadeau)
+npm run format
+
+# On lance les tests
+npm run test

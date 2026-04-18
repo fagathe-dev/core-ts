@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/constants';
+import { BASE_URL } from '@/constants/index.ts';
 import { RouteParams } from '@/types/index.d';
 
 /**
@@ -11,7 +11,7 @@ import { RouteParams } from '@/types/index.d';
  */
 const safeCreateUrl = (
   urlString: string,
-  baseUrl: string = BASE_URL
+  baseUrl: string = BASE_URL,
 ): URL | null => {
   try {
     if (urlString.startsWith('http')) {
@@ -34,7 +34,7 @@ const safeCreateUrl = (
 const addQueryParams = (
   url: string,
   params: RouteParams,
-  baseUrl: string = BASE_URL
+  baseUrl: string = BASE_URL,
 ): string => {
   const isAbsolute = url.startsWith('http');
   const urlObject = safeCreateUrl(url, baseUrl);
@@ -77,7 +77,7 @@ const addQueryParams = (
 const removeQueryParams = (
   url: string,
   keys: string[],
-  baseUrl: string = BASE_URL
+  baseUrl: string = BASE_URL,
 ): string => {
   const isAbsolute = url.startsWith('http');
   const urlObject = safeCreateUrl(url, baseUrl);
@@ -88,7 +88,7 @@ const removeQueryParams = (
 
   const searchParams = urlObject.searchParams;
 
-  keys.forEach(key => {
+  keys.forEach((key) => {
     // remove() supprime le paramètre s'il existe
     searchParams.delete(key);
   });
@@ -116,7 +116,7 @@ const removeQueryParams = (
  */
 const getQueryParams = (
   url: string,
-  baseUrl: string = BASE_URL
+  baseUrl: string = BASE_URL,
 ): Record<string, string> => {
   const urlObject = safeCreateUrl(url, baseUrl);
 

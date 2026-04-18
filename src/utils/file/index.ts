@@ -1,2 +1,2 @@
 export * from './FileSizeFormatter';
-export * from './enrichFileProps';
+export * from './mapFileIcon';

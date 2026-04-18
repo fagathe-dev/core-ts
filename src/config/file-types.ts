@@ -1,4 +1,4 @@
-import { FileCategory, FileTypeDefinition } from '@/types/index.d';
+import { FileCategory, FileTypeDefinition } from '@/types/file-types.d';
 
 // Configuration immuable des types de fichiers
 export const FILE_TYPES_CONFIG: Record<FileCategory, FileTypeDefinition> = {
@@ -13,6 +13,7 @@ export const FILE_TYPES_CONFIG: Record<FileCategory, FileTypeDefinition> = {
     ],
   },
   AUDIO: {
+    type: 'Audio',
     extensions: ['mp3', 'wav', 'ogg', 'weba'],
     mimeTypes: ['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/webm'],
   },
