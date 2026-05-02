@@ -11,7 +11,7 @@ import {
   initClipboardHandlers,
   copyElementContent,
   isClipboardSupported,
-} from '@/utils/features/clipboard';
+} from 'core-ts';
 ```
 
 ## Fonctions

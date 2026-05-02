@@ -5,7 +5,7 @@ Convertisseur Markdown vers HTML basé sur la librairie `marked`, avec une exten
 ## Import
 
 ```typescript
-import { convertMarkdownToHtml } from '@/utils/features/marked';
+import { convertMarkdownToHtml } from 'core-ts';
 ```
 
 ## Utilisation
@@ -52,5 +52,5 @@ convertMarkdownToHtml(null); // ''
 L'extension `highlightExtension` est automatiquement chargée au moment de l'import du module. Elle est disponible en export si besoin de la réutiliser dans un autre contexte :
 
 ```typescript
-import { highlightExtension } from '@/utils/features/marked';
+import { highlightExtension } from 'core-ts';
 ```

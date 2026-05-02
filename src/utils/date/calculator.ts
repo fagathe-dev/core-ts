@@ -1,6 +1,6 @@
 // public/ts/utils/date/DateCalculator.ts
 
-import { DateDiff, DateModifierOptions, DateInput } from '@/types/index.d'; // Vos types existants
+import { DateDiff, DateModifierOptions, DateInput } from '../../types/index.d'; // Vos types existants
 import { ensureDate } from './helper';
 
 export class DateCalculator {

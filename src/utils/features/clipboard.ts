@@ -2,8 +2,8 @@
  * Utilitaires pour la gestion du presse-papier
  */
 
-import { createElement } from '@/utils';
-import { ClipboardOptions, ClipboardResult } from '@/types/index.d';
+import { createElement } from '..';
+import { ClipboardOptions, ClipboardResult } from '../../types/index.d';
 
 /**
  * Copie du texte dans le presse-papier

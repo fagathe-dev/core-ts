@@ -5,8 +5,8 @@ Utilitaires pour le formatage de tailles de fichiers et le mapping d'icônes par
 ## Import
 
 ```typescript
-import { FileSizeFormatter } from '@/utils/file/FileSizeFormatter';
-import { FILE_ICON_MAP, DEFAULT_ICON } from '@/utils/file/mapFileIcon';
+import { FileSizeFormatter } from 'core-ts';
+import { FILE_ICON_MAP, DEFAULT_ICON } from 'core-ts';
 ```
 
 ## FileSizeFormatter
@@ -55,7 +55,7 @@ Classe générique pour l'upload de fichiers avec validation, preview et suivi d
 ### Import
 
 ```typescript
-import { FileUploader } from '@/utils/file/uploader';
+import { FileUploader } from 'core-ts';
 ```
 
 ### Initialisation
@@ -111,7 +111,7 @@ const uploader = new FileUploader({
 `FILE_ICON_MAP` associe une extension de fichier à une icône FontAwesome et une couleur.
 
 ```typescript
-import { FILE_ICON_MAP, DEFAULT_ICON } from '@/utils/file/mapFileIcon';
+import { FILE_ICON_MAP, DEFAULT_ICON } from 'core-ts';
 
 const extension = 'pdf';
 const { icon, color } = FILE_ICON_MAP[extension] ?? DEFAULT_ICON;

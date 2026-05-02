@@ -5,8 +5,8 @@ Utilitaires pour gérer les formulaires HTML : extraction de données, remplissa
 ## Import
 
 ```typescript
-import { FormManager } from '@/utils/forms/FormManager';
-import { SelectableField } from '@/utils/forms/selectable';
+import { FormManager } from 'core-ts';
+import { SelectableField } from 'core-ts';
 ```
 
 ## FormManager
@@ -124,9 +124,9 @@ const selectable = new SelectableField(container, { mode: 'radio' });
 Des fonctions utilitaires granulaires sont disponibles pour manipuler les champs individuellement :
 
 ```typescript
-import { clearInput, clearSelect, clearTextarea, clearCheck } from '@/utils/forms/field-actions/clear';
-import { fillTextarea, fillInput, fillRadio, selectOption, fillCheckboxes } from '@/utils/forms/field-actions/fill';
-import { getInputValue, getSelectValue, getTextareaValue, getCheckboxesValue, getRadioValue } from '@/utils/forms/field-actions/get';
+import { clearInput, clearSelect, clearTextarea, clearCheck } from 'core-ts';
+import { fillTextarea, fillInput, fillRadio, selectOption, fillCheckboxes } from 'core-ts';
+import { getInputValue, getSelectValue, getTextareaValue, getCheckboxesValue, getRadioValue } from 'core-ts';
 ```
 
 ### Clear

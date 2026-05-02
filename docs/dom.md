@@ -5,9 +5,9 @@ Utilitaires pour créer, insérer et sélectionner des éléments HTML.
 ## Import
 
 ```typescript
-import { createElement } from '@/utils/dom/createElement';
-import { insertElementToDOM } from '@/utils/dom/insertElementToDOM';
-import { $ } from '@/utils/dom/selector';
+import { createElement } from 'core-ts';
+import { insertElementToDOM } from 'core-ts';
+import { $ } from 'core-ts';
 ```
 
 ## Fonctions

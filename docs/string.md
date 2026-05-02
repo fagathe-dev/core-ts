@@ -21,7 +21,7 @@ import {
   escapeHtml,
   encodeBase64,
   decodeBase64,
-} from '@/utils/string';
+} from 'core-ts';
 ```
 
 ## Transformation

@@ -1,4 +1,4 @@
-import { UploaderOptions } from '@/types/index.d';
+import { UploaderOptions } from '../types/index.d';
 
 /**
  * Configuration globale par défaut pour le module Uploader.

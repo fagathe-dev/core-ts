@@ -5,7 +5,7 @@ Utilitaire agnostique pour le Drag & Drop natif HTML5, utilisant la délégation
 ## Import
 
 ```typescript
-import { DragNDrop } from '@/utils/drag-n-drop/drag-n-drop';
+import { DragNDrop } from 'core-ts';
 ```
 
 ## Utilisation

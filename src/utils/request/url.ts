@@ -1,5 +1,5 @@
-import { BASE_URL } from '@/constants/index.ts';
-import { RouteParams } from '@/types/index.d';
+import { BASE_URL } from '../../constants/index';
+import { RouteParams } from '../../types/index.d';
 
 /**
  * Tente de créer un objet URL à partir d'une chaîne.

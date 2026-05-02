@@ -1,4 +1,4 @@
-import { StorageStrategy } from '@/types/index.d';
+import { StorageStrategy } from '../../types/index.d';
 
 /**
  * Service utilitaire pour encapsuler l'utilisation du localStorage et sessionStorage.

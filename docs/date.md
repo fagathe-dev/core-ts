@@ -5,9 +5,9 @@ Classes utilitaires pour le formatage, le calcul et la validation de dates.
 ## Import
 
 ```typescript
-import { DateFormatter } from '@/utils/date/formatter';
-import { DateCalculator } from '@/utils/date/calculator';
-import { ensureDate } from '@/utils/date/helper';
+import { DateFormatter } from 'core-ts';
+import { DateCalculator } from 'core-ts';
+import { ensureDate } from 'core-ts';
 ```
 
 ## DateFormatter

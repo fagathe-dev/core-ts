@@ -1,6 +1,6 @@
 // public/ts/utils/request/api-error.ts : classe ApiError pour gérer les erreurs d'API de `fetch`
 
-import type { ApiErrorData } from '@/types/index.d';
+import type { ApiErrorData } from '../../types/index.d';
 
 /**
  * Custom error class for API request failures

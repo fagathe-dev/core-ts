@@ -1,6 +1,6 @@
 // public/ts/utils/date/DateFormatter.ts
 
-import { DateInput } from '@/types/index.d';
+import { DateInput } from '../../types/index.d';
 import { ensureDate } from './helper';
 
 export class DateFormatter {

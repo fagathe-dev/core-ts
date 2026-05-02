@@ -1,5 +1,5 @@
-import { $, createElement } from '@/utils';
-import { FormDataType, FormType } from '@/types';
+import { $, createElement } from '..';
+import { FormDataType, FormType } from '../../types';
 import {
   clearCheck,
   clearInput,

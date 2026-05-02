@@ -5,8 +5,8 @@ Utilitaires pour gérer les cookies et le localStorage/sessionStorage.
 ## Import
 
 ```typescript
-import { CookieHelper } from '@/utils/storage/cookies';
-import { StorageService } from '@/utils/storage/storage';
+import { CookieHelper } from 'core-ts';
+import { StorageService } from 'core-ts';
 ```
 
 ## CookieHelper

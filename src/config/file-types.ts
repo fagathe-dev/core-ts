@@ -1,4 +1,4 @@
-import { FileCategory, FileTypeDefinition } from '@/types/file-types.d';
+import { FileCategory, FileTypeDefinition } from '../types/file-types.d';
 
 // Configuration immuable des types de fichiers
 export const FILE_TYPES_CONFIG: Record<FileCategory, FileTypeDefinition> = {

@@ -5,11 +5,11 @@ Client HTTP basé sur Axios avec gestion d'erreurs typées, retry automatique et
 ## Import
 
 ```typescript
-import { fetchAPI, getApiToken } from '@/utils/request/fetch';
-import { ApiError } from '@/utils/request/api-error';
-import { router } from '@/utils/request/router';
-import { addQueryParams, removeQueryParams, getQueryParams, getCurrentUrl, getCurrentPath } from '@/utils/request/url';
-import { HTTP_STATUS } from '@/utils/request/http-status';
+import { fetchAPI, getApiToken } from 'core-ts';
+import { ApiError } from 'core-ts';
+import { router } from 'core-ts';
+import { addQueryParams, removeQueryParams, getQueryParams, getCurrentUrl, getCurrentPath } from 'core-ts';
+import { HTTP_STATUS } from 'core-ts';
 ```
 
 ## `fetchAPI<T>(url, options?)`

@@ -1,4 +1,4 @@
-import { $ } from '@/utils/dom/selector';
+import { $ } from '../../dom/selector';
 
 /**
  * Remplit une zone de texte avec le texte fourni et déclenche l'événement 'input'.

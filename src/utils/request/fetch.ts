@@ -1,9 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { API_TOKEN_COOKIE_NAME } from '@/constants/index.ts';
-import type { FetchResponse, RequestOptions } from '@/types';
+import { API_TOKEN_COOKIE_NAME } from '../../constants/index';
+import type { FetchResponse, RequestOptions } from '../../types';
 import { ApiError } from './api-error';
-import { CookieHelper } from '@/utils/storage/cookies';
-import { DEFAULT_FETCH_API_CONFIG } from '@/config/fetch';
+import { CookieHelper } from '../storage/cookies';
+import { DEFAULT_FETCH_API_CONFIG } from '../../config/fetch';
 
 /**
  * Récupère directement le token API depuis les cookies.

@@ -1,4 +1,4 @@
-import { AttributeMap } from '@/types/index.d';
+import { AttributeMap } from '../../types/index.d';
 
 const createElement = (
   tagName: keyof HTMLElementTagNameMap,

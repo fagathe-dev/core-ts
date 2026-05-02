@@ -1,6 +1,6 @@
 import { FileSizeFormatter } from './FileSizeFormatter';
-import { fetchAPI } from '@/utils/request/fetch';
-import { ApiError } from '@/utils/request/api-error';
+import { fetchAPI } from '../request/fetch';
+import { ApiError } from '../request/api-error';
 
 export interface FileUploaderConfig {
   uploadUrl: string;

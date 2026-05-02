@@ -1,4 +1,4 @@
-import { DateInput } from '@/types/index.d';
+import { DateInput } from '../../types/index.d';
 
 /**
  * Garantit qu'une valeur est bien un objet Date valide.

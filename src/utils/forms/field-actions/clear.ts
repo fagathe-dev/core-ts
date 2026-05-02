@@ -1,4 +1,4 @@
-import { $ } from '@/utils';
+import { $ } from '../..';
 
 /**
  * Clears the value of a textarea element and triggers the 'input' event.
