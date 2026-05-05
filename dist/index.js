@@ -550,37 +550,40 @@ var FileSizeFormatter = class _FileSizeFormatter {
 
 // src/utils/file/mapFileIcon.ts
 var FILE_ICON_MAP = {
-  pdf: { icon: "fas fa-file-pdf", color: "danger" },
-  doc: { icon: "fas fa-file-word", color: "primary" },
-  docx: { icon: "fas fa-file-word", color: "primary" },
-  xls: { icon: "fas fa-file-excel", color: "success" },
-  xlsx: { icon: "fas fa-file-excel", color: "success" },
-  csv: { icon: "fas fa-file-csv", color: "success" },
-  ppt: { icon: "fas fa-file-powerpoint", color: "warning" },
-  pptx: { icon: "fas fa-file-powerpoint", color: "warning" },
-  jpg: { icon: "fas fa-file-image", color: "info" },
-  jpeg: { icon: "fas fa-file-image", color: "info" },
-  png: { icon: "fas fa-file-image", color: "info" },
-  gif: { icon: "fas fa-file-image", color: "info" },
-  svg: { icon: "fas fa-file-image", color: "info" },
-  webp: { icon: "fas fa-file-image", color: "info" },
-  mp4: { icon: "fas fa-file-video", color: "purple" },
-  avi: { icon: "fas fa-file-video", color: "purple" },
-  mov: { icon: "fas fa-file-video", color: "purple" },
-  mp3: { icon: "fas fa-file-audio", color: "secondary" },
-  wav: { icon: "fas fa-file-audio", color: "secondary" },
-  zip: { icon: "fas fa-file-archive", color: "dark" },
-  rar: { icon: "fas fa-file-archive", color: "dark" },
-  "7z": { icon: "fas fa-file-archive", color: "dark" },
-  txt: { icon: "fas fa-file-alt", color: "muted" },
-  json: { icon: "fas fa-file-code", color: "primary" },
-  js: { icon: "fas fa-file-code", color: "warning" },
-  ts: { icon: "fas fa-file-code", color: "primary" },
-  html: { icon: "fas fa-file-code", color: "danger" },
-  css: { icon: "fas fa-file-code", color: "info" },
-  php: { icon: "fas fa-file-code", color: "purple" }
+  pdf: { icon: "ri-file-pdf-line", color: "danger" },
+  doc: { icon: "ri-file-word-line", color: "primary" },
+  docx: { icon: "ri-file-word-line", color: "primary" },
+  xls: { icon: "ri-file-excel-line", color: "success" },
+  xlsx: { icon: "ri-file-excel-line", color: "success" },
+  csv: { icon: "ri-file-list-3-line", color: "success" },
+  ppt: { icon: "ri-file-ppt-line", color: "warning" },
+  pptx: { icon: "ri-file-ppt-line", color: "warning" },
+  jpg: { icon: "ri-image-line", color: "info" },
+  jpeg: { icon: "ri-image-line", color: "info" },
+  png: { icon: "ri-image-line", color: "info" },
+  gif: { icon: "ri-file-gif-line", color: "info" },
+  // Icône spécifique au GIF trouvée !
+  svg: { icon: "ri-image-line", color: "info" },
+  webp: { icon: "ri-image-line", color: "info" },
+  mp4: { icon: "ri-video-line", color: "purple" },
+  avi: { icon: "ri-video-line", color: "purple" },
+  mov: { icon: "ri-video-line", color: "purple" },
+  mp3: { icon: "ri-file-music-line", color: "secondary" },
+  wav: { icon: "ri-file-music-line", color: "secondary" },
+  zip: { icon: "ri-file-zip-line", color: "dark" },
+  // Remplacé par file-zip (plus adapté que folder)
+  rar: { icon: "ri-file-zip-line", color: "dark" },
+  "7z": { icon: "ri-file-zip-line", color: "dark" },
+  txt: { icon: "ri-file-text-line", color: "muted" },
+  json: { icon: "ri-file-code-line", color: "primary" },
+  js: { icon: "ri-file-code-line", color: "warning" },
+  // Sécurisé (ri-javascript-line n'existe pas ici)
+  ts: { icon: "ri-file-code-line", color: "primary" },
+  html: { icon: "ri-html5-line", color: "danger" },
+  css: { icon: "ri-css3-line", color: "info" },
+  php: { icon: "ri-file-code-line", color: "purple" }
 };
-var DEFAULT_ICON = { icon: "fas fa-file", color: "muted" };
+var DEFAULT_ICON = { icon: "ri-file-line", color: "muted" };
 
 // src/utils/request/fetch.ts
 import axios from "axios";
