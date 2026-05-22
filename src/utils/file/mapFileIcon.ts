@@ -37,4 +37,9 @@ const FILE_ICON_MAP: Record<string, { icon: string; color: string }> = {
 // Icône par défaut pour les extensions non reconnues
 const DEFAULT_ICON = { icon: 'ri-file-line', color: 'muted' };
 
-export { FILE_ICON_MAP, DEFAULT_ICON };
+const mapFileIcon = (filename: string) => {
+  const ext = filename.split('.').pop()?.toLowerCase() || '';
+  return FILE_ICON_MAP[ext] || DEFAULT_ICON;
+};
+
+export { FILE_ICON_MAP, DEFAULT_ICON, mapFileIcon };
