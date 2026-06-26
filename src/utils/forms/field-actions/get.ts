@@ -47,7 +47,10 @@ export const getInputValue = (input: HTMLInputElement): string | null => {
     type === 'date' ||
     type === 'datetime' ||
     type === 'password' ||
-    type === 'hidden'
+    type === 'hidden' ||
+    type === 'email' ||
+    type === 'tel' ||
+    type === 'url'
   ) {
     return input.value !== '' ? input.value : null;
   }

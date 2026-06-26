@@ -562,7 +562,6 @@ var FILE_ICON_MAP = {
   jpeg: { icon: "ri-image-line", color: "info" },
   png: { icon: "ri-image-line", color: "info" },
   gif: { icon: "ri-file-gif-line", color: "info" },
-  // Icône spécifique au GIF trouvée !
   svg: { icon: "ri-image-line", color: "info" },
   webp: { icon: "ri-image-line", color: "info" },
   mp4: { icon: "ri-video-line", color: "purple" },
@@ -571,19 +570,21 @@ var FILE_ICON_MAP = {
   mp3: { icon: "ri-file-music-line", color: "secondary" },
   wav: { icon: "ri-file-music-line", color: "secondary" },
   zip: { icon: "ri-file-zip-line", color: "dark" },
-  // Remplacé par file-zip (plus adapté que folder)
   rar: { icon: "ri-file-zip-line", color: "dark" },
   "7z": { icon: "ri-file-zip-line", color: "dark" },
   txt: { icon: "ri-file-text-line", color: "muted" },
   json: { icon: "ri-file-code-line", color: "primary" },
   js: { icon: "ri-file-code-line", color: "warning" },
-  // Sécurisé (ri-javascript-line n'existe pas ici)
   ts: { icon: "ri-file-code-line", color: "primary" },
   html: { icon: "ri-html5-line", color: "danger" },
   css: { icon: "ri-css3-line", color: "info" },
   php: { icon: "ri-file-code-line", color: "purple" }
 };
 var DEFAULT_ICON = { icon: "ri-file-line", color: "muted" };
+var mapFileIcon = (filename) => {
+  const ext = filename.split(".").pop()?.toLowerCase() || "";
+  return FILE_ICON_MAP[ext] || DEFAULT_ICON;
+};
 
 // src/utils/request/fetch.ts
 import axios from "axios";
@@ -1125,7 +1126,7 @@ var getRadioValue = (radioButtons) => {
 };
 var getInputValue = (input) => {
   const { type } = input;
-  if (type === "text" || type === "number" || type === "date" || type === "datetime" || type === "password" || type === "hidden") {
+  if (type === "text" || type === "number" || type === "date" || type === "datetime" || type === "password" || type === "hidden" || type === "email" || type === "tel" || type === "url") {
     return input.value !== "" ? input.value : null;
   }
   return null;
@@ -1772,6 +1773,7 @@ export {
   isJSON,
   isURL,
   kebabCase,
+  mapFileIcon,
   randomStr,
   removeQueryParams,
   router,
