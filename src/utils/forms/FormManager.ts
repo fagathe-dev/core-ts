@@ -80,7 +80,10 @@ class FormManager {
               type === 'date' ||
               type === 'datetime' ||
               type === 'password' ||
-              type === 'hidden'
+              type === 'hidden' ||
+              type === 'email' ||
+              type === 'tel' ||
+              type === 'url'
             ) {
               data[name] = getInputValue(field as HTMLInputElement);
             }
