@@ -33,7 +33,10 @@ export const fillInput = (
     type === 'date' ||
     type === 'datetime' ||
     type === 'password' ||
-    type === 'hidden'
+    type === 'hidden' ||
+    type === 'email' ||
+    type === 'tel' ||
+    type === 'url' // ← ajouter
   ) {
     input.value = String(value);
   }
@@ -61,19 +64,17 @@ export const fillRadio = (
     `input[type="radio"][name="${name}"]`,
   );
 
+  // APRÈS — le else ne doit s'appliquer qu'aux radios NON sélectionnés
   radioButtons.forEach((input) => {
-    // Vérifier si la valeur du bouton correspond à la valeur cible
-    if (input.value === targetValue) {
-      input.checked = true;
-      // Déclencher l'événement 'input' directement sur l'élément sélectionné
-      const event = new Event('input', { bubbles: true });
-      input.dispatchEvent(event);
-    }
     if (value === null || value === false) {
       input.checked = false;
+      return;
+    }
+    if (input.value === targetValue) {
+      input.checked = true;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
     } else {
-      // Assurer que les autres boutons du groupe sont décochés
-      input.checked = false;
+      input.checked = false; // décocher les autres du groupe
     }
   });
 };

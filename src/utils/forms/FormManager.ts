@@ -2,6 +2,7 @@ import { $, createElement } from '..';
 import { FormDataType, FormType } from '../../types';
 import {
   clearCheck,
+  clearFeedback,
   clearInput,
   clearSelect,
   clearTextarea,
@@ -137,7 +138,10 @@ class FormManager {
               type === 'date' ||
               type === 'datetime' ||
               type === 'password' ||
-              type === 'hidden'
+              type === 'hidden' ||
+              type === 'email' ||
+              type === 'tel' ||
+              type === 'url'
             ) {
               (field as HTMLInputElement).value = value as string;
             }
@@ -206,12 +210,11 @@ class FormManager {
   reset() {
     const fields = this.form.querySelectorAll(FormManager.FORM_FIELD_SELECTOR);
 
-    FormManager.FEEDBACK_SELECTORS.forEach((selector: string) => {
-      clearValidation(this.form, selector);
+    FormManager.FEEDBACK_SELECTORS.forEach((selector) => {
+      clearFeedback(this.form, selector); // ← supprime les éléments <small> du DOM
     });
-
-    FormManager.VALIDATION_SELECTORS.forEach((selector: string) => {
-      clearValidation(this.form, selector);
+    FormManager.VALIDATION_SELECTORS.forEach((selector) => {
+      clearValidation(this.form, selector); // ← retire .is-valid / .is-invalid des champs
     });
 
     fields.forEach((field) => {
@@ -231,7 +234,10 @@ class FormManager {
           type === 'date' ||
           type === 'datetime' ||
           type === 'password' ||
-          type === 'hidden'
+          type === 'hidden' ||
+          type === 'email' ||
+          type === 'tel' ||
+          type === 'url'
         ) {
           clearInput(field as HTMLInputElement);
         }

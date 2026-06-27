@@ -1054,6 +1054,16 @@ var clearSelect = (select) => {
   const event = new Event("change", { bubbles: true });
   select.dispatchEvent(event);
 };
+var clearFeedback = (form, feedbackClass) => {
+  const feedbackElements = $(
+    feedbackClass,
+    true,
+    form
+  );
+  feedbackElements.forEach((element) => {
+    element.remove();
+  });
+};
 var clearValidation = (form, validationClass) => {
   const fields = $(validationClass, true, form);
   fields.forEach((field) => {
@@ -1073,13 +1083,13 @@ var fillRadio = (name, value) => {
     `input[type="radio"][name="${name}"]`
   );
   radioButtons.forEach((input) => {
-    if (input.value === targetValue) {
-      input.checked = true;
-      const event = new Event("input", { bubbles: true });
-      input.dispatchEvent(event);
-    }
     if (value === null || value === false) {
       input.checked = false;
+      return;
+    }
+    if (input.value === targetValue) {
+      input.checked = true;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
     } else {
       input.checked = false;
     }
@@ -1200,7 +1210,7 @@ var FormManager = class _FormManager {
               data[name] = choice;
               continue;
             }
-            if (type === "text" || type === "number" || type === "date" || type === "datetime" || type === "password" || type === "hidden") {
+            if (type === "text" || type === "number" || type === "date" || type === "datetime" || type === "password" || type === "hidden" || type === "email" || type === "tel" || type === "url") {
               data[name] = getInputValue(field);
             }
           }
@@ -1234,7 +1244,7 @@ var FormManager = class _FormManager {
             if (type === "radio") {
               fillRadio(name, value);
             }
-            if (type === "text" || type === "number" || type === "date" || type === "datetime" || type === "password" || type === "hidden") {
+            if (type === "text" || type === "number" || type === "date" || type === "datetime" || type === "password" || type === "hidden" || type === "email" || type === "tel" || type === "url") {
               field.value = value;
             }
             break;
@@ -1291,7 +1301,7 @@ var FormManager = class _FormManager {
   reset() {
     const fields = this.form.querySelectorAll(_FormManager.FORM_FIELD_SELECTOR);
     _FormManager.FEEDBACK_SELECTORS.forEach((selector) => {
-      clearValidation(this.form, selector);
+      clearFeedback(this.form, selector);
     });
     _FormManager.VALIDATION_SELECTORS.forEach((selector) => {
       clearValidation(this.form, selector);
@@ -1304,7 +1314,7 @@ var FormManager = class _FormManager {
         if (type === "checkbox" || type === "radio") {
           clearCheck(field);
         }
-        if (type === "text" || type === "number" || type === "date" || type === "datetime" || type === "password" || type === "hidden") {
+        if (type === "text" || type === "number" || type === "date" || type === "datetime" || type === "password" || type === "hidden" || type === "email" || type === "tel" || type === "url") {
           clearInput(field);
         }
       }

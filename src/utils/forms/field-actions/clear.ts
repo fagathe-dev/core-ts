@@ -63,7 +63,7 @@ export const clearFeedback = (
   feedbackClass: string,
 ): void => {
   const feedbackElements = $(
-    `.${feedbackClass}`,
+    feedbackClass,
     true,
     form,
   ) as NodeListOf<HTMLElement>;
